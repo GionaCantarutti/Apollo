@@ -11,28 +11,29 @@ public class VirtualMachine implements VMInterface {
     Adress Pointer;
     Adress[] BGPointers;
     Boolean[] Flags;
-    int Xoffset;
-    int Yoffset;
+    int XOffset;
+    int YOffset;
+    Boolean ERROR;
+    int runningStatus;
+    int RGBOffset;
 
 
     public VirtualMachine() {
 
         image = null;
-        PC = new Adress();
-        Pointer = new Adress();
-        BGPointers = new Adress[256];
-        for (int i = 0; i < BGPointers.length; i++) {
-            BGPointers[i] = new Adress();
-        }
-        Flags = new Boolean[256];
-        Xoffset = 0;
-        Yoffset = 0;
+        initializeInstance();
 
     }
 
     public VirtualMachine(Image image) {
 
         this.image = image;
+        initializeInstance();
+
+    }
+
+    void initializeInstance() {
+
         PC = new Adress();
         Pointer = new Adress();
         BGPointers = new Adress[256];
@@ -40,36 +41,43 @@ public class VirtualMachine implements VMInterface {
             BGPointers[i] = new Adress();
         }
         Flags = new Boolean[256];
-        Xoffset = 0;
-        Yoffset = 0;
+        XOffset = 0;
+        YOffset = 0;
+        ERROR = false;
+        runningStatus = 0;
+        RGBOffset = 0;
 
     }
 
-
+//ToDo
     public void step() {
+
+
 
     }
 
     public Image getCurrentImage() {
-        return null;
+        return image;
     }
 
-    public void setImage() {
-
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Adress getPC() {
-        return null;
+        return PC;
     }
 
+    //ToDo
     public Color getPCColor() {
         return null;
     }
 
     public Adress getPointer() {
-        return null;
+        return Pointer;
     }
 
+    //ToDo
     public Color getPointerColor() {
         return null;
     }
@@ -79,18 +87,29 @@ public class VirtualMachine implements VMInterface {
     }
 
     public Boolean[] getFlags() {
-        return new Boolean[0];
+        return Flags;
     }
 
     public int getXOffset() {
-        return 0;
+        return XOffset;
     }
 
     public int getYOffset() {
-        return 0;
+        return YOffset;
     }
 
     public void reset() {
+        this.image = null;
+        initializeInstance();
+    }
 
+    public boolean getERROR() {
+        return ERROR;
+    }
+
+    public boolean getRunningStatus() {
+        if (runningStatus == 2) {
+            return false;
+        } else return true;
     }
 }

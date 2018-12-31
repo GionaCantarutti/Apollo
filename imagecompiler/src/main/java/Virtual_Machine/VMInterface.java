@@ -14,7 +14,7 @@ public interface VMInterface {
 
     Image getCurrentImage();
 
-    void setImage();
+    void setImage(Image image);
 
     Adress getPC();
 
@@ -33,5 +33,9 @@ public interface VMInterface {
     int getYOffset();
 
     void reset();
+
+    boolean getERROR();
+
+    boolean getRunningStatus();
 
 }

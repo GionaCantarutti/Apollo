@@ -44,7 +44,7 @@ public class VirtualMachine implements VMInterface {
 
     }
 
-    /*
+    /**
      * Turns the image into a writableImage and sets the writer and reader instance variables
      * Modifies image, reader and writer variables
      * Asserts that the image variable is not null
@@ -81,7 +81,7 @@ public class VirtualMachine implements VMInterface {
 
     }
 
-    /*
+    /**
         Initializes every variable
         PC and all pointers start at 0,0
         All flags start as false ??
@@ -97,6 +97,9 @@ public class VirtualMachine implements VMInterface {
             BGPointers[i] = new Adress();
         }
         Flags = new Boolean[256];
+        for (int i = 0; i < Flags.length; i++) {
+            Flags[i] = false;
+        }
         XOffset = 0;
         YOffset = 0;
         ERROR = false;
@@ -111,7 +114,7 @@ public class VirtualMachine implements VMInterface {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /*
+    /**
         Steps the execution, calling the command pointed by the PC and if the PC is unchanged at the end of the call
         it gets moved to the next position as a default
         @throws InvalidImageException if either the image, the writer or the reader are null
@@ -127,12 +130,18 @@ public class VirtualMachine implements VMInterface {
 
             checkImage();
 
-            Color PCColor = reader.getColor(PC.x, PC.y);
-            double ID = PCColor.getRed();
-            double Arg1 = PCColor.getGreen();
-            double Arg2 = PCColor.getBlue();
+            Color PCColor = reader.getColor(PC.x + XOffset, PC.y + YOffset);
+
+            //System.out.println("Color is: " + getColor(PC).getRed() + " " + getColor(PC).getGreen() + " " + getColor(PC).getBlue());
+
+            double ID = getColor(PC).getRed()*255;
+            double Arg1 = getColor(PC).getGreen()*255;
+            double Arg2 = getColor(PC).getBlue()*255;
 
             Adress prevPC = PC;
+
+            System.out.println("Running ID: " + ID);
+            System.out.println("With args: " + Arg1 + ", " + Arg2);
 
             executeCommand(ID, Arg1, Arg2);
 
@@ -150,7 +159,7 @@ public class VirtualMachine implements VMInterface {
 
     }
 
-    /*
+    /**
         resets the virtualMachine to its default state by resetting all instance variables and setting the image to null
      */
     public void reset() {
@@ -158,7 +167,14 @@ public class VirtualMachine implements VMInterface {
         initializeInstance();
     }
 
-    /*
+    public void runColor(Color c) {
+
+        executeCommand(c.getRed()*255, c.getGreen()*255, c.getBlue()*255);
+
+    }
+
+    //region private methods
+    /**
         @throws InvalidImageException if either the image, the writer or the reader are null
      */
     private void checkImage() throws InvalidImageException {
@@ -171,7 +187,7 @@ public class VirtualMachine implements VMInterface {
 
     }
 
-    /*
+    /**
         moves the PC to the next position (scans from left to right, up to down when at the end of a line)
      */
     private void movePC() {
@@ -233,6 +249,7 @@ public class VirtualMachine implements VMInterface {
         writer.setColor(adress.x, adress.y, c);
     }
     //endregion
+    //endregion
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -247,6 +264,7 @@ public class VirtualMachine implements VMInterface {
 
     public void setImage(Image image) {
         this.image = image;
+        prepImage();
     }
 
     public Adress getPC() {
@@ -294,7 +312,7 @@ public class VirtualMachine implements VMInterface {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /*
+    /**
         calls the command identified by the ID with arg1 and arg2 as arguments
      */
     private void executeCommand(double ID, double arg1, double arg2) {
@@ -405,7 +423,7 @@ public class VirtualMachine implements VMInterface {
 
     }
 
-    /*
+    /**
         checks if the command ID is within the range of the number-th command
         @param number the number of the command range the caller is checking for
         @param ID the ID of the command
@@ -435,8 +453,10 @@ public class VirtualMachine implements VMInterface {
         XOffset += arg1;
         YOffset += arg2;
 
-        XOffset %= image.getWidth()-256;
-        YOffset %= image.getHeight()-256;
+        XOffset = Math.max(0, XOffset);
+        YOffset = Math.max(0, YOffset);
+        XOffset = (XOffset % (int)(image.getWidth()-256));
+        YOffset = (XOffset % (int)(image.getHeight()-256));
     }
     private void C_AND(double arg1, double arg2) {
         Flags[0] = Flags[(int)arg1] && Flags[(int)arg2];
@@ -477,13 +497,13 @@ public class VirtualMachine implements VMInterface {
         }
     }
     private void C_conditionalGoTo(double arg1, double arg2) {
-        if (Flags[0]) {
+        if (Flags[0] && (new Adress(arg1,arg2) != PC)) {
             PC.x = (int)arg1;
             PC.y = (int)arg2;
         }
     }
     private void C_conditionalRelativeGoTo(double arg1, double arg2) {
-        if (Flags[0]) {
+        if (Flags[0] && (new Adress(arg1,arg2) != PC)) {
             PC.x = PC.x + (int)arg1;
             PC.y = PC.y + (int)arg2;
         }
@@ -499,25 +519,25 @@ public class VirtualMachine implements VMInterface {
         double red, green, blue;
 
         try {
-            red = (c1.getRed()/c2.getRed())%256;
+            red = (c1.getRed()/c2.getRed());
         } catch(Exception e) {
             ERROR = true;
             red = 0;
         }
         try {
-            green = (c1.getGreen()/c2.getGreen())%256;
+            green = (c1.getGreen()/c2.getGreen());
         } catch(Exception e) {
             ERROR = true;
             green = 0;
         }
         try {
-            blue = (c1.getBlue()/c2.getBlue())%256;
+            blue = (c1.getBlue()/c2.getBlue());
         } catch(Exception e) {
             ERROR = true;
             blue = 0;
         }
 
-        Color c3 = Color.rgb((int)red*255, (int)green*255, (int)blue*255);
+        Color c3 = Color.rgb((int)(red*255)%256, (int)(green*255)%256, (int)(blue*255)%256);
 
         setColor((int)arg1, (int)arg2, c3);
     }
@@ -525,11 +545,13 @@ public class VirtualMachine implements VMInterface {
         PC = Pointer;
     }
     private void C_fibonacci(double arg1, double arg2) {
-        Color c = Color.rgb((int)(getColor(PC).getRed()*255), (int)(arg2), (int)(arg1 + arg2));
+        Color c = Color.rgb((int)(getColor(PC).getRed()*255), (int)(arg2), (int)((arg1 + arg2)%256));
         setColor(PC.x, PC.y, c);
     }
     private void C_goTo(double arg1, double arg2) {
-        PC = new Adress(arg1, arg2);
+        if (new Adress(arg1,arg2) != PC) {
+            PC = new Adress(arg1, arg2);
+        }
     }
     private void C_invert(double arg1, double arg2) {
         Flags[0] = !Flags[0];
@@ -564,7 +586,7 @@ public class VirtualMachine implements VMInterface {
         green = (c1.getGreen()*c2.getGreen())%256;
         blue = (c1.getBlue()*c2.getBlue())%256;
 
-        Color c3 = Color.rgb((int)red*255, (int)green*255, (int)blue*255);
+        Color c3 = Color.rgb((int)(red*255)%256, (int)(green*255)%256, (int)(blue*255)%256);
 
         setColor((int)arg1, (int)arg2, c3);
     }
@@ -614,13 +636,16 @@ public class VirtualMachine implements VMInterface {
         }
     }
     private void C_relativeGoTo(double arg1, double arg2) {
-        PC.x += arg1;
-        PC.y += arg2;
+        if (new Adress(arg1,arg2) != PC) {
+            PC.x += arg1;
+            PC.y += arg2;
+        }
     }
     private void C_repeat(double arg1, double arg2) {
         Color c = Color.rgb((int)(getColor(PC).getRed()*255), (int)(((getColor(PC).getGreen()*255) - 1)%256), (int)(getColor(PC).getBlue()*255));
         setColor(PC, c);
         if (getColor(PC).getGreen()*255 >= 1) {
+            movePCBack();
             movePCBack();
         }
     }
@@ -630,6 +655,11 @@ public class VirtualMachine implements VMInterface {
     private void C_resetOffset(double arg1, double arg2) {
         XOffset = 0;
         YOffset = 0;
+
+        XOffset = Math.max(0, XOffset);
+        YOffset = Math.max(0, YOffset);
+        XOffset = (XOffset % (int)(image.getWidth()-256));
+        YOffset = (XOffset % (int)(image.getHeight()-256));
     }
     private void C_rotateFlags(double arg1, double arg2) {
         boolean[] t = new boolean[256];
@@ -673,11 +703,14 @@ public class VirtualMachine implements VMInterface {
         Color c2 = getColor(Pointer);
         double red, green, blue;
 
-        red = (c1.getRed()-c2.getRed())%256;
-        green = (c1.getGreen()-c2.getGreen())%256;
-        blue = (c1.getBlue()-c2.getBlue())%256;
+        red = (c1.getRed()-c2.getRed());
+        if (red < 0) red = 0;
+        green = (c1.getGreen()-c2.getGreen());
+        if (green < 0) green = 0;
+        blue = (c1.getBlue()-c2.getBlue());
+        if (blue < 0) blue = 0;
 
-        Color c3 = Color.rgb((int)red*255, (int)green*255, (int)blue*255);
+        Color c3 = Color.rgb((int)(red*255)%256, (int)(green*255)%256, (int)(blue*255)%256);
 
         setColor((int)arg1, (int)arg2, c3);
     }
@@ -685,8 +718,10 @@ public class VirtualMachine implements VMInterface {
         XOffset -= arg1;
         YOffset -= arg2;
 
-        XOffset %= image.getWidth()-256;
-        YOffset %= image.getHeight()-256;
+        XOffset = Math.max(0, XOffset);
+        YOffset = Math.max(0, YOffset);
+        XOffset = (XOffset % (int)(image.getWidth()-256));
+        YOffset = (XOffset % (int)(image.getHeight()-256));
     }
     private void C_sum(double arg1, double arg2) {
         Color c1 = getColor(arg1, arg2);
@@ -697,7 +732,7 @@ public class VirtualMachine implements VMInterface {
         green = (c1.getGreen()+c2.getGreen())%256;
         blue = (c1.getBlue()+c2.getBlue())%256;
 
-        Color c3 = Color.rgb((int)red*255, (int)green*255, (int)blue*255);
+        Color c3 = Color.rgb((int)(red*255)%256, (int)(green*255)%256, (int)(blue*255)%256);
 
         setColor((int)arg1, (int)arg2, c3);
     }
@@ -712,25 +747,28 @@ public class VirtualMachine implements VMInterface {
         BGPointers[(int)arg1] = t;
     }
     private void C_tintBlue(double arg1, double arg2) {
-        Color c = Color.rgb((int)(((getColor(PC).getRed()*255))%256), (int)(((getColor(PC).getGreen()*255))%256), (int)(((getColor(PC).getBlue()*255) + arg1)%256) );
+        arg1 = arg1/10;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
+                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255))%256), ((int)((getColor(i, j).getGreen()*255))%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
                 setColor(i, j, c);
             }
         }
     }
     private void C_tintGreen(double arg1, double arg2) {
-        Color c = Color.rgb((int)(((getColor(PC).getRed()*255))%256), (int)(((getColor(PC).getGreen()*255) + arg1)%256), (int)(((getColor(PC).getBlue()*255) + arg1)%256) );
+        arg1 = arg1/10;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
+                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255))%256), ((int)((getColor(i, j).getGreen()*255) + arg1)%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
                 setColor(i, j, c);
             }
         }
     }
     private void C_tintRed(double arg1, double arg2) {
-        Color c = Color.rgb((int)(((getColor(PC).getRed()*255) + arg1)%256), (int)(((getColor(PC).getGreen()*255))%256), (int)(((getColor(PC).getBlue()*255) + arg1)%256) );
+        arg1 = arg1/10;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
+                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255) + arg1)%256), ((int)((getColor(i, j).getGreen()*255))%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
                 setColor(i, j, c);
             }
         }

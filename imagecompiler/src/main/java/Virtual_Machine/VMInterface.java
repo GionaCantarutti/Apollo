@@ -40,4 +40,6 @@ public interface VMInterface {
 
     boolean getRunningStatus();
 
+    void runColor(Color c);
+
 }

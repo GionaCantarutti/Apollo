@@ -6,7 +6,7 @@ public class TestColor {
 
     public static void main(String args[]) {
 
-        Color c = Color.rgb(255, 100, 255);
+        Color c = Color.rgb(900, 100, 255);
         assert (c.getRed() == 255 && c.getGreen() == 100);
         if (c.getGreen()*255 != 100) {
             System.out.println("Oh fuck! " + c.getGreen()*255);

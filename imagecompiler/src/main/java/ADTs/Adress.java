@@ -14,6 +14,14 @@ public class Adress {
 
     }
 
+    public Adress( double x, double y ) {
+
+        this.x = (int)x;
+
+        this.y = (int)y;
+
+    }
+
     public Adress() {
 
         this.x = 0;

@@ -10,7 +10,7 @@ public interface VMInterface {
      * Steps the execution of the virtual machines.
      * Throws InvalidImageException
      */
-    void step() throws InvalidImageException;
+    void step() throws InvalidImageException, MachineStoppedException;
 
     Image getCurrentImage();
 
@@ -33,6 +33,8 @@ public interface VMInterface {
     int getYOffset();
 
     void reset();
+
+    void resetRunningStatus();
 
     boolean getERROR();
 

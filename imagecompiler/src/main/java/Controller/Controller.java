@@ -1,5 +1,6 @@
 package Controller;
 
+import GUIs.TestingGUI;
 import Virtual_Machine.*;
 
 import ADTs.Adress;
@@ -13,10 +14,16 @@ public class Controller implements ControllerInterface{
 
     VMInterface virtualMachine;
     Image sourceImage;
+    VirtualMachineThread VMT;
 
     public Controller() {
         sourceImage = new WritableImage(256, 256);
         virtualMachine = new VirtualMachine(sourceImage);
+        VMT = new VirtualMachineEngine(virtualMachine);
+
+        Thread VMthread = new Thread((Runnable)VMT);
+
+        VMthread.start();
     }
 
     public void step() {
@@ -33,10 +40,16 @@ public class Controller implements ControllerInterface{
     //ToDo
     public void run() {
 
+        //System.out.println("called controller run");
+
+        VMT.start();
+
     }
 
     //ToDo
     public void stop() {
+
+        VMT.pause();
 
     }
 
@@ -72,5 +85,11 @@ public class Controller implements ControllerInterface{
 
     public void runColor(Color c) {
         virtualMachine.runColor(c);
+    }
+
+    public void terminate() {
+
+        VMT.terminate();
+
     }
 }

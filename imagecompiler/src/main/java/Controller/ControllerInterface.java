@@ -33,4 +33,6 @@ public interface ControllerInterface {
 
     void runColor(Color c);
 
+    void terminate();
+
 }

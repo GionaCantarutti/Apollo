@@ -28,6 +28,8 @@ public class TestingGUI extends Application implements EventHandler<ActionEvent>
     BorderPane layout;
     HBox buttons;
 
+    Button run;
+    Button pause;
     Button step;
     Button reset;
     Button setImage;
@@ -66,6 +68,12 @@ public class TestingGUI extends Application implements EventHandler<ActionEvent>
 
         primaryStage.setTitle("Apollo testing GUI");
 
+        run = new Button("Run");
+        run.setOnAction(this);
+        buttons.getChildren().add(run);
+        pause = new Button("Pause");
+        pause.setOnAction(this);
+        buttons.getChildren().add(pause);
         step = new Button("Step");
         step.setOnAction(this);
         buttons.getChildren().add(step);
@@ -99,9 +107,16 @@ public class TestingGUI extends Application implements EventHandler<ActionEvent>
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open Source Image");
 
+        primaryStage.setOnCloseRequest(event -> {
+            controller.terminate();
+            primaryStage.close();
+        });
+
         primaryStage.setScene(scene);
 
         primaryStage.show();
+
+        //After closing the main window
 
     }
 
@@ -147,11 +162,19 @@ public class TestingGUI extends Application implements EventHandler<ActionEvent>
 
             update();
 
+        } else if (event.getSource() == run) {
+
+            controller.run();
+
+        } else if (event.getSource() == pause) {
+
+            controller.stop();
+
         }
 
     }
 
-    private void update() {
+    public void update() {
 
         buttons.getChildren().remove(PCPosition);
         PCPosition = new Label(controller.getPC().x + ", " + controller.getPC().y);

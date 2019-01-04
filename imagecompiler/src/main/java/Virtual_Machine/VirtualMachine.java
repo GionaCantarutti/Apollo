@@ -130,7 +130,7 @@ public class VirtualMachine implements VMInterface {
 
             checkImage();
 
-            Color PCColor = reader.getColor(PC.x + XOffset, PC.y + YOffset);
+            checkPCInvariant();
 
             //System.out.println("Color is: " + getColor(PC).getRed() + " " + getColor(PC).getGreen() + " " + getColor(PC).getBlue());
 
@@ -140,8 +140,9 @@ public class VirtualMachine implements VMInterface {
 
             Adress prevPC = PC;
 
-            System.out.println("Running ID: " + ID);
-            System.out.println("With args: " + Arg1 + ", " + Arg2);
+            System.out.println("PC at coords: " + PC.x + ", " + PC.y);
+            System.out.println("Running ID: " + (int)ID);
+            System.out.println("With args: " + (int)Arg1 + ", " + (int)Arg2);
 
             executeCommand(ID, Arg1, Arg2);
 
@@ -187,6 +188,22 @@ public class VirtualMachine implements VMInterface {
 
     }
 
+
+    /**
+     * Checks if the PC is within bounds, if not, prints a yellow warning in console and resets the PC to 0,0
+     */
+    private void checkPCInvariant() {
+
+        if (PC.x > 255 || PC.x < 0 || PC.y > 255 || PC.y < 0) {
+
+            System.out.println("\u001B[33m" + "#############################################\nPC out of bounds!!\n#############################################" + "\u001B[0m");
+
+            PC = new Adress(0, 0);
+
+        }
+
+    }
+
     /**
         moves the PC to the next position (scans from left to right, up to down when at the end of a line)
      */
@@ -225,12 +242,19 @@ public class VirtualMachine implements VMInterface {
         adress.x += XOffset;
         adress.y += YOffset;
 
+        adress.x %= image.getWidth();
+        adress.y %= image.getHeight();
+
         return reader.getColor(adress.x, adress.y);
     }
 
     private Color getColor(double X, double Y) {
         X += XOffset;
         Y += YOffset;
+
+        X %= image.getWidth();
+        Y %= image.getHeight();
+
 
         return reader.getColor((int)X, (int)Y);
     }
@@ -239,12 +263,19 @@ public class VirtualMachine implements VMInterface {
         X += XOffset;
         Y += YOffset;
 
+        X %= image.getWidth();
+        Y %= image.getHeight();
+
         writer.setColor((int)X,(int)Y,c);
     }
 
     private void setColor(Adress adress, Color c) {
         adress.x += XOffset;
         adress.y += YOffset;
+
+        adress.x %= image.getWidth();
+        adress.y %= image.getHeight();
+
 
         writer.setColor(adress.x, adress.y, c);
     }

@@ -3,6 +3,8 @@ package Controller;
 import GUIs.TestingGUI;
 import Virtual_Machine.*;
 
+import java.awt.image.renderable.ContextualRenderedImageFactory;
+
 public class VirtualMachineEngine implements VirtualMachineThread, Runnable{
 
     private final int DEFAULT_SLEEP_TIME = 10;
@@ -15,12 +17,15 @@ public class VirtualMachineEngine implements VirtualMachineThread, Runnable{
 
     VMInterface virtualMachine;
 
-    public VirtualMachineEngine(VMInterface virtualMachine) {
+    Controller controller;
+
+    public VirtualMachineEngine(Controller controller) {
 
         running = false;
         sleepTime = DEFAULT_SLEEP_TIME;
         toTerminate = false;
-        this.virtualMachine = virtualMachine;
+        this.virtualMachine = controller.virtualMachine;
+        this.controller = controller;
 
     }
 
@@ -76,6 +81,7 @@ public class VirtualMachineEngine implements VirtualMachineThread, Runnable{
 
                     try {
                         virtualMachine.step();
+                        controller.updateObservers();
                     } catch (Exception e) {
 
                         System.out.println("Error occurred while stepping the machine: " + e.getMessage());

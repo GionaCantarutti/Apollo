@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 
 public class VirtualMachine implements VMInterface {
 
-    final int NUMBER_OF_COMMANDS = 51;
+    final int   NUMBER_OF_COMMANDS = 51;
 
     //region Instance variables
     Image image;

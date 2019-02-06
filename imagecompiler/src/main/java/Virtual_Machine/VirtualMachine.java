@@ -24,7 +24,7 @@ public class VirtualMachine implements VMInterface {
     int YOffset;
     Boolean ERROR;
     int runningStatus;
-    int RGBOffset;
+    int RGBOffset;  //to be removed?
     //endregion
 
 
@@ -315,7 +315,7 @@ public class VirtualMachine implements VMInterface {
     }
 
     public Adress[] getBackgroundPointers() {
-        return new Adress[0];
+        return BGPointers;
     }
 
     public Boolean[] getFlags() {

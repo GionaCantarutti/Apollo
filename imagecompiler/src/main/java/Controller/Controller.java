@@ -1,6 +1,8 @@
 package Controller;
 
 import GUIs.TestingGUI;
+import Observer.Observable;
+import Observer.Observer;
 import Virtual_Machine.*;
 
 import ADTs.Adress;
@@ -10,34 +12,44 @@ import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-public class Controller implements ControllerInterface{
+import java.util.ArrayList;
+
+public class Controller implements ControllerInterface, Observable {
 
     VMInterface virtualMachine;
     Image sourceImage;
     VirtualMachineThread VMT;
 
+    String standardOutput;
+
+    ArrayList<Observer> observers;
+
     public Controller() {
         sourceImage = new WritableImage(256, 256);
         virtualMachine = new VirtualMachine(sourceImage);
-        VMT = new VirtualMachineEngine(virtualMachine);
+        VMT = new VirtualMachineEngine(this);
 
         Thread VMthread = new Thread((Runnable)VMT);
 
         VMthread.start();
+
+        observers = new ArrayList<Observer>();
     }
 
     public void step() {
         try {
             virtualMachine.step();
+            updateObservers();
         } catch (InvalidImageException invalidImage) {
             virtualMachine.setImage(sourceImage);
             step();
         } catch (MachineStoppedException machineStopped) {
+            standardOutput = "Machine is currently stopped, cannot step forward";
             System.out.println("machine is stopped");
         }
     }
 
-    //ToDo
+
     public void run() {
 
         //System.out.println("called controller run");
@@ -46,7 +58,7 @@ public class Controller implements ControllerInterface{
 
     }
 
-    //ToDo
+
     public void stop() {
 
         VMT.pause();
@@ -92,4 +104,59 @@ public class Controller implements ControllerInterface{
         VMT.terminate();
 
     }
+
+    //region observable
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+
+
+    private void updateObserver(Observer o) {
+
+        if(o.isWithStandardOutput()) {
+            o.updateStandardOutput(standardOutput);
+        }
+
+
+        if (o.isWithError()) {
+            o.updateError(virtualMachine.getERROR());
+        }
+        if (o.isWithFlags()) {
+            o.updateFlags(virtualMachine.getFlags());
+        }
+        if (o.isWithImage()) {
+            o.updateImage(virtualMachine.getCurrentImage());
+        }
+        if (o.isWithOffset()) {
+            o.updateOffset(virtualMachine.getXOffset(), virtualMachine.getYOffset());
+        }
+        if (o.isWithPC()) {
+            o.updatePC(virtualMachine.getPC());
+        }
+        if (o.isWithPointer()) {
+            o.updatePointer(virtualMachine.getPointer());
+        }
+        if (o.isWithPointers()) {
+            o.updatePointers(virtualMachine.getBackgroundPointers());
+        }
+        if (o.isWithStatus()) {
+            o.updateStatus(virtualMachine.getRunningStatus());
+        }
+    }
+
+    public void updateObservers() {
+        for (Observer o: observers) {
+            updateObserver(o);
+        }
+    }
+
+    //endregion
 }

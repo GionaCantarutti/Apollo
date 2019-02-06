@@ -1,9 +1,12 @@
 package GUIs;
 
+import ADTs.Adress;
 import Observer.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -16,12 +19,10 @@ import javafx.stage.FileChooser;
 import java.io.File;
 
 import Controller.*;
+import sun.security.ssl.Debug;
 
 //ToDo with scene builder
-public class DebuggingGUI extends Application {
-
-    Observer VMObserver;
-    Controller controller;
+public class DebuggingGUI extends Application{
 
     public static void main(String[] args) {
 
@@ -32,24 +33,11 @@ public class DebuggingGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        initializeObserver();
-        controller = new Controller();
+        Parent root = FXMLLoader.load(getClass().getResource("TestingView.fxml"));
+        primaryStage.setTitle("Debugging environment for Apollo");
+        primaryStage.setScene(new Scene(root, 1800, 800));
+        primaryStage.show();
 
-        ((Observable)controller).addObserver(VMObserver);
-
-    }
-
-    private void initializeObserver() {
-        VMObserver = new VMObserver();
-        VMObserver.withError();
-        VMObserver.withFlags();
-        VMObserver.withImage();
-        VMObserver.withOffset();
-        VMObserver.withPC();
-        VMObserver.withPointer();
-        VMObserver.withPointers();
-        VMObserver.withStandardOutput();
-        VMObserver.withStatus();
     }
 
 }

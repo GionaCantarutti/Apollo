@@ -107,12 +107,10 @@ public class Controller implements ControllerInterface, Observable {
 
     //region observable
 
-    @Override
     public void addObserver(Observer observer) {
         observers.add(observer);
     }
 
-    @Override
     public void removeObserver(Observer observer) {
         observers.remove(observer);
     }

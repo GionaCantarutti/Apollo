@@ -42,16 +42,4 @@ public interface Observer {
     void updateStatus(boolean runningStatus);
 
 
-
-    void withImage();
-    void withStandardOutput();
-    void withPointer();
-    void withPointers();
-    void withFlags();
-    void withPC();
-    void withError();
-    void withOffset();
-    void withStatus();
-
-
 }

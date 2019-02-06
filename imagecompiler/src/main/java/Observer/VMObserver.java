@@ -96,7 +96,6 @@ public class VMObserver implements Observer{
         return withStatus;
     }
 
-    @Override
     public boolean isWithStandardOutput() {
         return withStandardOutput;
     }
@@ -121,93 +120,75 @@ public class VMObserver implements Observer{
     }
 
 
-    @Override
     public void updateImage(Image workingImage) {
         image = workingImage;
     }
 
-    @Override
     public void updateStandardOutput(String standardOutput) {
         this.standardOutput = standardOutput;
     }
 
-    @Override
     public void updatePointer(Adress pointer) {
         this.Pointer = pointer;
     }
 
-    @Override
     public void updatePointers(Adress[] pointers) {
         this.BGPointers = pointers;
     }
 
-    @Override
     public void updateFlags(Boolean[] flags) {
         this.Flags = flags;
     }
 
-    @Override
     public void updatePC(Adress PC) {
         this.PC = PC;
     }
 
-    @Override
     public void updateError(boolean ERROR) {
         this.ERROR = ERROR;
     }
 
-    @Override
     public void updateOffset(int xOffset, int yOffset) {
         this.XOffset = xOffset;
         this.YOffset = yOffset;
     }
 
-    @Override
     public void updateStatus(boolean runningStatus) {
         this.runningStatus = runningStatus;
     }
 
-    @Override
     public void withImage() {
         withImage = true;
     }
 
-    @Override
     public void withStandardOutput() {
         withStandardOutput = true;
     }
 
-    @Override
     public void withPointer() {
         withPointer = true;
     }
 
-    @Override
     public void withPointers() {
         withPointers= true;
     }
 
-    @Override
     public void withFlags() {
         withFlags = true;
     }
 
-    @Override
     public void withPC() {
         withPC = true;
     }
 
-    @Override
     public void withError() {
         withError = true;
     }
 
-    @Override
     public void withOffset() {
         withOffset = true;
     }
 
-    @Override
     public void withStatus() {
         withStatus = true;
     }

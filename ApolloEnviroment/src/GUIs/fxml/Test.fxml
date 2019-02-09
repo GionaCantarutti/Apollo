@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.DebuggingGUIController">
+   <top>
+      <VBox>
+         <children>
+            <MenuBar prefHeight="25.0" prefWidth="628.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#ChooseFile" text="Load file" />
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#StepVM" text="Button" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="dummy" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <SplitPane dividerPositions="0.6316">
+         <items>
+            <ImageView fx:id="workingView" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../../../../../Pictures/best%20screen%20ever.PNG" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="sourceView" pickOnBounds="true" preserveRatio="true" />
+         </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView prefHeight="100.0" prefWidth="642.0" />
+            <ListView prefHeight="100.0" prefWidth="638.0" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

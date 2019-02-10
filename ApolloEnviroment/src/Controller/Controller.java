@@ -96,6 +96,7 @@ public class Controller implements ControllerInterface, Observable {
 
     public void runColor(Color c) {
         virtualMachine.runColor(c);
+        updateObservers();
     }
 
     public void terminate() {

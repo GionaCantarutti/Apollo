@@ -5,9 +5,13 @@ import Controller.Controller;
 import Observer.Observer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -52,6 +56,15 @@ public class DebuggingGUIController implements Initializable, Observer {
 
     @FXML
     ImageView sourceView;
+
+    @FXML
+    GridPane pointersGrid, flagsGrid;
+
+    @FXML
+    Label GUIMessage;
+
+    @FXML
+    TextField redField, greenField, blueField;
 
     //endregion
 
@@ -254,6 +267,7 @@ public class DebuggingGUIController implements Initializable, Observer {
                 .set();
 
         controller.addObserver(this);
+        controller.updateObservers();
         //endregion
 
 
@@ -276,6 +290,8 @@ public class DebuggingGUIController implements Initializable, Observer {
         sourceView.setImage(sourceImage);
         workingView.setImage(sourceImage);
 
+        updateView();
+
     }
 
     @FXML
@@ -284,6 +300,34 @@ public class DebuggingGUIController implements Initializable, Observer {
         controller.step();
 
         workingView.setImage(controller.getWorkingImage());
+
+        updateView();
+
+    }
+
+    @FXML
+    void RunColor() {
+
+        String redS = redField.getText();
+        String greenS = greenField.getText();
+        String blueS = blueField.getText();
+
+        int red, green, blue;
+
+        try {
+            red = Integer.parseInt(redS);
+            green = Integer.parseInt(greenS);
+            blue = Integer.parseInt(blueS);
+
+            if (red > 255 || green > 255 || blue > 255 || red < 0 || green < 0 || blue < 0) {
+                GUIMessage.setText("Values must be within the range 0-255");
+            } else {
+                controller.runColor(Color.rgb(red, green, blue));
+            }
+
+        } catch (Exception e) {
+            GUIMessage.setText("Values must be integers!");
+        }
 
     }
 
@@ -305,6 +349,58 @@ public class DebuggingGUIController implements Initializable, Observer {
             return null;
 
         }
+    }
+
+    void updateView() {
+
+        updatePointersGrid();
+        updateFlagsGrid();
+        updateWorkingImage();
+
+    }
+
+    void updateWorkingImage() {
+
+        workingView.setImage(workingImage);
+
+    }
+
+    void updatePointersGrid() {
+
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+
+                Adress data = pointers[(i * 16) + j];
+
+                Label dataLabel = new Label(data.toString());
+
+                pointersGrid.add(dataLabel, i, j);
+            }
+        }
+
+    }
+
+    void updateFlagsGrid() {
+
+        for (int i = 0; i < 16; i++) {
+            for (int j = 0; j < 16; j++) {
+
+                boolean data = flags[(i * 16) + j];
+
+                String dataString;
+
+                if (data) {
+                    dataString = "TRUE";
+                } else {
+                    dataString = "FALSE";
+                }
+
+                Label dataLabel = new Label(dataString);
+
+                flagsGrid.add(dataLabel, i, j);
+            }
+        }
+
     }
 
 }

@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 public class VirtualMachine implements VMInterface {
 
     final int   NUMBER_OF_COMMANDS = 51;
+    final String VERSION = "1.4a";
 
     //region Instance variables
     Image image;
@@ -111,6 +112,10 @@ public class VirtualMachine implements VMInterface {
 
     }
     //endregion
+
+    public String getVersion() {
+        return VERSION;
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -585,7 +590,7 @@ public class VirtualMachine implements VMInterface {
         }
     }
     private void C_invert(double arg1, double arg2) {
-        Flags[0] = !Flags[0];
+        Flags[(int)arg1] = !Flags[(int)arg1];
     }
     private void C_lazyCompare(double arg1, double arg2) {
         boolean b = (getColor(arg1,arg2) == getColor(Pointer));
@@ -633,7 +638,7 @@ public class VirtualMachine implements VMInterface {
     private void C_pickPointer(double arg1, double arg2) {
         Adress t = Pointer;
         Pointer = BGPointers[(int)arg1];
-        BGPointers[(int)arg1] = Pointer;
+        BGPointers[(int)arg1] = t;
     }
     private void C_point(double arg1, double arg2) {
         Pointer = new Adress(arg1, arg2);

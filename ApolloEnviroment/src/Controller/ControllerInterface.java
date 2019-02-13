@@ -30,4 +30,6 @@ public interface ControllerInterface {
 
     void terminate();
 
+    String getVMVersion();
+
 }

@@ -32,41 +32,37 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#StepVM" text="Step" />
-                  <Button mnemonicParsing="false" onAction="#RunColor" text="Run color" />
-                  <TextField fx:id="redField" promptText="red value" />
-                  <TextField fx:id="greenField" promptText="green value" />
-                  <TextField fx:id="blueField" promptText="blue value" />
-                  <Label fx:id="GUIMessage" />
-               </children>
-            </HBox>
+            <BorderPane>
+               <left>
+                  <HBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#StepVM" text="Step" />
+                        <Button mnemonicParsing="false" onAction="#RunColor" text="Run color" />
+                        <TextField fx:id="redField" promptText="red value" />
+                        <TextField fx:id="greenField" promptText="green value" />
+                        <TextField fx:id="blueField" promptText="blue value" />
+                        <Label fx:id="GUIMessage" />
+                     </children>
+                  </HBox>
+               </left>
+               <right>
+                  <Label fx:id="VMVersionLabel" text="Virtual Machine version " textFill="#808080" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
          </children>
       </VBox>
    </top>
-   <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane fx:id="dummy" prefHeight="200.0" prefWidth="200.0" />
-         </children>
-      </VBox>
-   </left>
    <center>
-      <SplitPane dividerPositions="0.5">
-         <items>
-            <ImageView fx:id="workingView" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../../../../../Pictures/best%20screen%20ever.PNG" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="sourceView" pickOnBounds="true" preserveRatio="true" />
-         </items>
-      </SplitPane>
+      <ImageView fx:id="displayImageView" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../../../Pictures/best%20screen%20ever.PNG" />
+         </image>
+      </ImageView>
    </center>
    <bottom>
       <VBox>
          <children>
+            <AnchorPane fx:id="dummy" />
             <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
                   <GridPane fx:id="pointersGrid" gridLinesVisible="true">
@@ -151,6 +147,81 @@
       </VBox>
    </bottom>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <GridPane fx:id="virtualMachineProprieties" alignment="CENTER" gridLinesVisible="true" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label contentDisplay="CENTER" text="Standard Output" />
+            <Label text="Program Counter" GridPane.rowIndex="1" />
+            <Label text="Main pointer" GridPane.rowIndex="2" />
+            <Label text="X offset" GridPane.rowIndex="3" />
+            <Label text="Y offset" GridPane.rowIndex="4" />
+            <Label text="Error bit" GridPane.rowIndex="5" />
+            <Label text="Status" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
    </right>
+   <left>
+      <BorderPane BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="ShowSourceButton" mnemonicParsing="false" onAction="#SourceSwitch" text="Show Source Image" />
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label contentDisplay="CENTER" text="PC color:" />
+                  <Label fx:id="PCcolorLabel" text="-" />
+                  <Label text="Pointer color:" />
+                  <Label fx:id="PointerColorLabel" text="-" />
+                  <Label text="Main flag value:" />
+                  <Label fx:id="MainFlagValueLabel" text="-" />
+                  <Label text="Pixel inspector:" />
+                  <HBox fx:id="inspectorValues1">
+                     <children>
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="inspectorLabel1" text="-" />
+                  <HBox fx:id="inspectorValues2">
+                     <children>
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="inspectorLabel2" text="-" />
+                  <HBox fx:id="inspectorValues3">
+                     <children>
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="inspectorLabel3" text="-" />
+                  <HBox fx:id="inspectorValues4">
+                     <children>
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                        <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="inspectorLabel4" text="-" />
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </left>
 </BorderPane>

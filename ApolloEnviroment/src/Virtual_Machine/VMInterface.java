@@ -14,6 +14,8 @@ public interface VMInterface {
 
     Image getCurrentImage();
 
+    String getVersion();
+
     void setImage(Image image);
 
     Adress getPC();

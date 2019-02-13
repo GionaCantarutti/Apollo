@@ -21,7 +21,7 @@ public class DebuggingGUI extends Application{
     public void start(Stage primaryStage) throws Exception {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Test.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/DbuggingView.fxml"));
             Parent root = fxmlLoader.load();
             primaryStage.setTitle("Debugging environment for Apollo");
             primaryStage.setScene(new Scene(root, 1800, 800));

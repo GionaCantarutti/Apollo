@@ -66,7 +66,7 @@ public class Controller implements ControllerInterface, Observable {
 
     public void setImage(Image image) {
         sourceImage = image;
-        virtualMachine.setImage(image);
+        virtualMachine.setImage(sourceImage);
     }
 
     public void reset() {
@@ -103,6 +103,10 @@ public class Controller implements ControllerInterface, Observable {
 
         VMT.terminate();
 
+    }
+
+    public String getVMVersion() {
+        return virtualMachine.getVersion();
     }
 
     //region observable

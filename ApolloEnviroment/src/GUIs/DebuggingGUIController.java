@@ -3,14 +3,18 @@ package GUIs;
 import ADTs.Adress;
 import Controller.Controller;
 import Observer.Observer;
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
@@ -52,19 +56,43 @@ public class DebuggingGUIController implements Initializable, Observer {
     //region View variables
 
     @FXML
-    ImageView workingView;
-
-    @FXML
-    ImageView sourceView;
+    ImageView displayImageView;
 
     @FXML
     GridPane pointersGrid, flagsGrid;
 
     @FXML
-    Label GUIMessage;
+    GridPane virtualMachineProprieties;
+
+    @FXML
+    Label GUIMessage, VMVersionLabel;
 
     @FXML
     TextField redField, greenField, blueField;
+
+    @FXML
+    Button ShowSourceButton;
+
+    @FXML
+    HBox inspectorValues1, inspectorValues2, inspectorValues3, inspectorValues4;
+
+    @FXML
+    Label PCcolorLabel, PointerColorLabel, MainFlagValueLabel, inspectorLabel1, inspectorLabel2, inspectorLabel3, inspectorLabel4;
+
+    Label Standard_Output;
+    Label Program_Counter;
+    Label Main_Pointer;
+    Label X_Offset;
+    Label Y_Offset;
+    Label Error_Bit;
+    Label Status;
+
+    Label[][] pointersLabels, flagsLabels;
+
+    HBox[] boxes;
+    Label[] labels;
+
+    Image toDisplayImage;
 
     //endregion
 
@@ -253,6 +281,8 @@ public class DebuggingGUIController implements Initializable, Observer {
 
         controller = new Controller();
 
+        toDisplayImage = workingImage;
+
         //region setting up and adding Observer
         new DebuggingGUIController.ObserverSetup(this)
                 .withPointers()
@@ -270,10 +300,93 @@ public class DebuggingGUIController implements Initializable, Observer {
         controller.updateObservers();
         //endregion
 
+        //region initializing virtual machine proprieties
+
+        VMVersionLabel.setText("Virtual Machine version " + controller.getVMVersion());
+
+        Standard_Output = new Label(standardOutput);
+        Program_Counter = new Label(PC.toString());
+        Main_Pointer = new Label(pointer.toString());
+        X_Offset = new Label(xOffset + "");
+        Y_Offset = new Label(yOffset + "");
+        if (ERROR) {
+            Error_Bit = new Label("TRUE");
+        } else {
+            Error_Bit = new Label("FALSE");
+        }
+        if (runningStatus) {
+            Status = new Label("STOPPED");
+        } else {
+            Status = new Label("RUNNING");
+        }
+
+        virtualMachineProprieties.add(Standard_Output, 1, 0);
+        virtualMachineProprieties.add(Program_Counter, 1, 1);
+        virtualMachineProprieties.add(Main_Pointer, 1, 2);
+        virtualMachineProprieties.add(X_Offset, 1, 3);
+        virtualMachineProprieties.add(Y_Offset, 1, 4);
+        virtualMachineProprieties.add(Error_Bit, 1, 5);
+        virtualMachineProprieties.add(Status, 1, 6);
+
+        flagsLabels = new Label[16][16];
+        pointersLabels = new Label[16][16];
+        for(int i = 0; i < 16; i++) {
+            for(int j = 0; j < 16; j++) {
+                flagsLabels[i][j] = new Label("FLASE");
+                pointersLabels[i][j] = new Label("(0,0)");
+                flagsGrid.add(flagsLabels[i][j], i, j);
+                pointersGrid.add(pointersLabels[i][j], i, j);
+            }
+        }
+        //endregion
+
+        //region Initialize inspector variables
+
+        boxes = new HBox[4];
+        boxes[0] = inspectorValues1;
+        boxes[1] = inspectorValues2;
+        boxes[2] = inspectorValues3;
+        boxes[3] = inspectorValues4;
+        labels = new Label[4];
+        labels[0] = inspectorLabel1;
+        labels[1] = inspectorLabel2;
+        labels[2] = inspectorLabel3;
+        labels[3] = inspectorLabel4;
+
+        //endregion
+
 
     }
 
     //region Callable functions
+
+    @FXML
+    void updateLabels() {
+
+        PixelReader reader = workingImage.getPixelReader();
+
+        for (int j = 0; j < boxes.length; j++) {
+
+            HBox b = boxes[j];
+            Label l = labels[j];
+
+            int coords[] = new int[2];
+
+            for (int i = 0; i < 2; i++) {
+                TextField t = (TextField)b.getChildren().get(i);
+                String text = t.getText();
+                try {
+                    coords[i] = Integer.parseInt(text);
+                } catch (Exception e) {
+                    //nothin'
+                }
+            }
+
+            l.setText(colorToString(reader.getColor(coords[0], coords[1])));
+
+        }
+
+    }
 
     @FXML
     void ChooseFile() {
@@ -287,10 +400,12 @@ public class DebuggingGUIController implements Initializable, Observer {
 
         controller.setImage(sourceImage);
 
-        sourceView.setImage(sourceImage);
-        workingView.setImage(sourceImage);
+        displayImageView.setImage(sourceImage);
 
         updateView();
+        StepVM();
+        SourceSwitch();
+        SourceSwitch();
 
     }
 
@@ -298,11 +413,20 @@ public class DebuggingGUIController implements Initializable, Observer {
     void StepVM() {
 
         controller.step();
-
-        workingView.setImage(controller.getWorkingImage());
-
         updateView();
 
+    }
+
+    @FXML
+    void SourceSwitch() {
+        if (toDisplayImage == sourceImage) {
+            toDisplayImage = workingImage;
+            ShowSourceButton.setText("Show Source Image");
+        } else {
+            toDisplayImage = sourceImage;
+            ShowSourceButton.setText("Show Working Image");
+        }
+        updateView();
     }
 
     @FXML
@@ -323,6 +447,8 @@ public class DebuggingGUIController implements Initializable, Observer {
                 GUIMessage.setText("Values must be within the range 0-255");
             } else {
                 controller.runColor(Color.rgb(red, green, blue));
+                GUIMessage.setText("");
+                updateView();
             }
 
         } catch (Exception e) {
@@ -351,17 +477,60 @@ public class DebuggingGUIController implements Initializable, Observer {
         }
     }
 
+    public String colorToString(Color c) {
+
+        return "(" + (int)(c.getRed()*255) + ", " + (int)(c.getGreen()*255) + ", " + (int)(c.getBlue()*255) + ")";
+
+    }
+
     void updateView() {
 
         updatePointersGrid();
         updateFlagsGrid();
         updateWorkingImage();
+        updateValues();
+        updateInspectors();
+        updateLabels();
+
+    }
+
+    void updateInspectors() {
+
+        PixelReader reader = workingImage.getPixelReader();
+
+        PCcolorLabel.setText(colorToString(reader.getColor(PC.x, PC.y)));
+        PointerColorLabel.setText(colorToString(reader.getColor(pointer.x, pointer.y)));
+        if (flags[0]) {
+            MainFlagValueLabel.setText("TRUE");
+        } else {
+            MainFlagValueLabel.setText("FALSE");
+        }
+
+    }
+
+    void updateValues() {
+
+        Standard_Output.setText(standardOutput);
+        Program_Counter.setText(PC.toString());
+        Main_Pointer.setText(pointer.toString());
+        X_Offset.setText(xOffset + "");
+        Y_Offset.setText(yOffset + "");
+        if (ERROR) {
+            Error_Bit.setText("TRUE");
+        } else {
+            Error_Bit.setText("FALSE");
+        }
+        if (runningStatus) {
+            Status.setText("RUNNING");
+        } else {
+            Status.setText("STOPPED");
+        }
 
     }
 
     void updateWorkingImage() {
 
-        workingView.setImage(workingImage);
+        displayImageView.setImage(toDisplayImage);
 
     }
 
@@ -370,11 +539,9 @@ public class DebuggingGUIController implements Initializable, Observer {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
 
-                Adress data = pointers[(i * 16) + j];
+                Adress data = pointers[(j * 16) + i];
 
-                Label dataLabel = new Label(data.toString());
-
-                pointersGrid.add(dataLabel, i, j);
+                pointersLabels[i][j].setText(data.toString());
             }
         }
 
@@ -385,7 +552,7 @@ public class DebuggingGUIController implements Initializable, Observer {
         for (int i = 0; i < 16; i++) {
             for (int j = 0; j < 16; j++) {
 
-                boolean data = flags[(i * 16) + j];
+                boolean data = flags[(j * 16) + i];
 
                 String dataString;
 
@@ -395,9 +562,7 @@ public class DebuggingGUIController implements Initializable, Observer {
                     dataString = "FALSE";
                 }
 
-                Label dataLabel = new Label(dataString);
-
-                flagsGrid.add(dataLabel, i, j);
+                flagsLabels[i][j].setText(dataString);
             }
         }
 

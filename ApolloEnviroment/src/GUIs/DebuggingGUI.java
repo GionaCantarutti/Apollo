@@ -23,6 +23,7 @@ public class DebuggingGUI extends Application{
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/DbuggingView.fxml"));
             Parent root = fxmlLoader.load();
+            ((DebuggingGUIController)fxmlLoader.getController()).setStage(primaryStage);
             primaryStage.setTitle("Debugging environment for Apollo");
             primaryStage.setScene(new Scene(root, 1800, 800));
             primaryStage.show();

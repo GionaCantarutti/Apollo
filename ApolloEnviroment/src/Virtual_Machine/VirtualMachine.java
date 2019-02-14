@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 public class VirtualMachine implements VMInterface {
 
     final int   NUMBER_OF_COMMANDS = 51;
-    final String VERSION = "1.4a";
+    final String VERSION = "1.4d";
 
     //region Instance variables
     Image image;
@@ -25,7 +25,6 @@ public class VirtualMachine implements VMInterface {
     int YOffset;
     Boolean ERROR;
     int runningStatus;
-    int RGBOffset;  //to be removed?
     //endregion
 
 
@@ -105,7 +104,6 @@ public class VirtualMachine implements VMInterface {
         YOffset = 0;
         ERROR = false;
         runningStatus = 0;
-        RGBOffset = 0;
 
         reader = null;
         writer = null;
@@ -492,7 +490,7 @@ public class VirtualMachine implements VMInterface {
         XOffset = Math.max(0, XOffset);
         YOffset = Math.max(0, YOffset);
         XOffset = (XOffset % (int)(image.getWidth()-256));
-        YOffset = (XOffset % (int)(image.getHeight()-256));
+        YOffset = (YOffset % (int)(image.getHeight()-256));
     }
     private void C_AND(double arg1, double arg2) {
         Flags[0] = Flags[(int)arg1] && Flags[(int)arg2];
@@ -783,7 +781,7 @@ public class VirtualMachine implements VMInterface {
         BGPointers[(int)arg1] = t;
     }
     private void C_tintBlue(double arg1, double arg2) {
-        arg1 = arg1/10;
+        arg1 = arg1;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
                 Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255))%256), ((int)((getColor(i, j).getGreen()*255))%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
@@ -792,7 +790,7 @@ public class VirtualMachine implements VMInterface {
         }
     }
     private void C_tintGreen(double arg1, double arg2) {
-        arg1 = arg1/10;
+        arg1 = arg1;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
                 Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255))%256), ((int)((getColor(i, j).getGreen()*255) + arg1)%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
@@ -801,7 +799,7 @@ public class VirtualMachine implements VMInterface {
         }
     }
     private void C_tintRed(double arg1, double arg2) {
-        arg1 = arg1/10;
+        arg1 = arg1;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
                 Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255) + arg1)%256), ((int)((getColor(i, j).getGreen()*255))%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );

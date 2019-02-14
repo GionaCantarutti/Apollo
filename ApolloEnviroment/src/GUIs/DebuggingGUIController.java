@@ -3,20 +3,18 @@ package GUIs;
 import ADTs.Adress;
 import Controller.Controller;
 import Observer.Observer;
-import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelReader;
+import javafx.scene.image.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
@@ -54,6 +52,8 @@ public class DebuggingGUIController implements Initializable, Observer {
     //endregion
 
     //region View variables
+
+    Stage primaryStage;
 
     @FXML
     ImageView displayImageView;
@@ -355,7 +355,6 @@ public class DebuggingGUIController implements Initializable, Observer {
 
         //endregion
 
-
     }
 
     //region Callable functions
@@ -389,12 +388,90 @@ public class DebuggingGUIController implements Initializable, Observer {
     }
 
     @FXML
+    void CloseWindow() {
+        primaryStage.close();
+    }
+
+    @FXML
+    void LoadDummy() {
+        int SIZE = 512;
+        WritableImage writableImage = new WritableImage(512, 512);
+        PixelWriter writer = writableImage.getPixelWriter();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                writer.setColor(i, j, Color.rgb(0, 0, 0));
+            }
+        }
+        sourceImage = writableImage;
+        workingImage = writableImage;
+        controller.setImage(writableImage);
+        displayImageView.setImage(writableImage);
+        updateView();
+        SourceSwitch();
+        SourceSwitch();
+    }
+
+    //ToDo
+    @FXML
+    void ExportWorkingImage() {
+
+    }
+
+    //ToDo
+    @FXML
+    void DisplayInformation() {}
+
+    //ToDo
+    @FXML
+    void OpenDocumentation() {}
+
+    @FXML
+    void ResetVM() {
+        controller.reset();
+        workingImage = sourceImage;
+        updateView();
+    }
+
+    @FXML
+    void ResetToSource() {
+        controller.reset();
+        controller.setImage(sourceImage);
+        updateView();
+        SourceSwitch();
+        SourceSwitch();
+    }
+
+    @FXML
     void ChooseFile() {
+
+        ResetVM();
 
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open Source Image");
 
-        sourceFile = fileChooser.showOpenDialog(dummy.getScene().getWindow());
+        sourceFile = fileChooser.showOpenDialog(primaryStage);
+
+        sourceImage = loadImage(sourceFile);
+
+        controller.setImage(sourceImage);
+
+        displayImageView.setImage(sourceImage);
+
+        updateView();
+        SourceSwitch();
+        SourceSwitch();
+
+    }
+
+    @FXML
+    void ChooseFileAndStep() {
+
+        ResetVM();
+
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Source Image");
+
+        sourceFile = fileChooser.showOpenDialog(primaryStage);
 
         sourceImage = loadImage(sourceFile);
 
@@ -481,6 +558,10 @@ public class DebuggingGUIController implements Initializable, Observer {
 
         return "(" + (int)(c.getRed()*255) + ", " + (int)(c.getGreen()*255) + ", " + (int)(c.getBlue()*255) + ")";
 
+    }
+
+    public void setStage(Stage s) {
+        primaryStage = s;
     }
 
     void updateView() {

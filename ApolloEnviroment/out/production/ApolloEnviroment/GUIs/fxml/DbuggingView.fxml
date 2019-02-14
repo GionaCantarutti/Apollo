@@ -16,18 +16,25 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#ChooseFile" text="Load file" />
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#ChooseFile" text="Load" />
+                        <MenuItem mnemonicParsing="false" onAction="#ChooseFileAndStep" text="Load and step" />
+                        <MenuItem mnemonicParsing="false" onAction="#LoadDummy" text="Load dummy image" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#ExportWorkingImage" text="Export working image" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem mnemonicParsing="false" onAction="#CloseWindow" text="Close" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#ResetVM" text="Reset" />
+                        <MenuItem mnemonicParsing="false" onAction="#ResetToSource" text="Reset to source image" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#OpenDocumentation" text="See documentation" />
+                    <MenuItem mnemonicParsing="false" onAction="#DisplayInformation" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -197,7 +204,11 @@
                         <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />
                      </children>
                   </HBox>
-                  <Label fx:id="inspectorLabel1" text="-" />
+                  <HBox alignment="TOP_CENTER">
+                     <children>
+                        <Label fx:id="inspectorLabel1" text="-" />
+                     </children>
+                  </HBox>
                   <HBox fx:id="inspectorValues2">
                      <children>
                         <TextField onInputMethodTextChanged="#updateLabels" onKeyTyped="#updateLabels" />

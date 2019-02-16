@@ -3,6 +3,7 @@ package GUIs;
 import ADTs.Adress;
 import Controller.Controller;
 import Observer.Observer;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,7 +17,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -415,6 +419,19 @@ public class DebuggingGUIController implements Initializable, Observer {
     @FXML
     void ExportWorkingImage() {
 
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter for text files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PNG File", "*.png");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(primaryStage);
+
+        if (file != null) {
+            saveImageToFile(workingImage, file);
+        }
+
     }
 
     //ToDo
@@ -449,6 +466,9 @@ public class DebuggingGUIController implements Initializable, Observer {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open Source Image");
 
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.gif", "*.png", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+
         sourceFile = fileChooser.showOpenDialog(primaryStage);
 
         sourceImage = loadImage(sourceFile);
@@ -470,6 +490,9 @@ public class DebuggingGUIController implements Initializable, Observer {
 
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open Source Image");
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files", "*.gif", "*.png", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
 
         sourceFile = fileChooser.showOpenDialog(primaryStage);
 
@@ -536,6 +559,17 @@ public class DebuggingGUIController implements Initializable, Observer {
 
     //endregion
 
+    public void saveImageToFile(Image image, File file) {
+
+        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+        try {
+            ImageIO.write(bImage, "png", file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     public Image loadImage(File imageFile) {
 
         try
@@ -579,8 +613,8 @@ public class DebuggingGUIController implements Initializable, Observer {
 
         PixelReader reader = workingImage.getPixelReader();
 
-        PCcolorLabel.setText(colorToString(reader.getColor(PC.x, PC.y)));
-        PointerColorLabel.setText(colorToString(reader.getColor(pointer.x, pointer.y)));
+        PCcolorLabel.setText(colorToString(reader.getColor(PC.x + xOffset, PC.y + yOffset)));
+        PointerColorLabel.setText(colorToString(reader.getColor(pointer.x + xOffset, pointer.y + yOffset)));
         if (flags[0]) {
             MainFlagValueLabel.setText("TRUE");
         } else {

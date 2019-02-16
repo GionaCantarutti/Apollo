@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 public class VirtualMachine implements VMInterface {
 
     final int   NUMBER_OF_COMMANDS = 51;
-    final String VERSION = "1.4d";
+    final String VERSION = "1.5b";
 
     //region Instance variables
     Image image;
@@ -242,13 +242,13 @@ public class VirtualMachine implements VMInterface {
 
     //region color write and read functions
     private Color getColor(Adress adress) {
-        adress.x += XOffset;
-        adress.y += YOffset;
+        int xCoord = adress.x + XOffset;
+        int yCoord = adress.y + YOffset;
 
-        adress.x %= image.getWidth();
-        adress.y %= image.getHeight();
+        xCoord %= image.getWidth();
+        yCoord %= image.getHeight();
 
-        return reader.getColor(adress.x, adress.y);
+        return reader.getColor(xCoord, yCoord);
     }
 
     private Color getColor(double X, double Y) {
@@ -273,14 +273,13 @@ public class VirtualMachine implements VMInterface {
     }
 
     private void setColor(Adress adress, Color c) {
-        adress.x += XOffset;
-        adress.y += YOffset;
+        int xCoord = adress.x + XOffset;
+        int yCoord = adress.y + YOffset;
 
-        adress.x %= image.getWidth();
-        adress.y %= image.getHeight();
+        xCoord %= image.getWidth();
+        yCoord %= image.getHeight();
 
-
-        writer.setColor(adress.x, adress.y, c);
+        writer.setColor(xCoord, yCoord, c);
     }
     //endregion
     //endregion
@@ -489,21 +488,21 @@ public class VirtualMachine implements VMInterface {
 
         XOffset = Math.max(0, XOffset);
         YOffset = Math.max(0, YOffset);
-        XOffset = (XOffset % (int)(image.getWidth()-256));
-        YOffset = (YOffset % (int)(image.getHeight()-256));
+        XOffset = Math.min((int)(image.getWidth() - 255), XOffset);
+        YOffset = Math.min((int)(image.getHeight() - 255), YOffset);
     }
     private void C_AND(double arg1, double arg2) {
         Flags[0] = Flags[(int)arg1] && Flags[(int)arg2];
     }
     private void C_breakFinalize(double arg1, double arg2) {
-        if ((getColor(BGPointers[255]) == getColor(arg1,arg2)) && (runningStatus == 1 || runningStatus == 2)) {
+        if ((getColor(BGPointers[255]).equals(getColor(arg1,arg2))) && (runningStatus == 1 || runningStatus == 2)) {
             runningStatus = 3;
         } else {
             ERROR = true;
         }
     }
     private void C_breakInitialize(double arg1, double arg2) {
-        if (getColor(Pointer) == getColor(arg1, arg2)) {
+        if (getColor(Pointer).equals(getColor(arg1, arg2))) {
             runningStatus = 2;
         }
     }
@@ -523,8 +522,7 @@ public class VirtualMachine implements VMInterface {
         }
     }
     private void C_compare(double arg1, double arg2) {
-        boolean b = (getColor(arg1,arg2) == getColor(Pointer));
-        if (b) {
+        if (getColor(arg1, arg2).equals(getColor(Pointer))) {
             Flags[0] = true;
         } else {
             Flags[0] = false;
@@ -591,7 +589,7 @@ public class VirtualMachine implements VMInterface {
         Flags[(int)arg1] = !Flags[(int)arg1];
     }
     private void C_lazyCompare(double arg1, double arg2) {
-        boolean b = (getColor(arg1,arg2) == getColor(Pointer));
+        boolean b = (getColor(arg1, arg2).equals(getColor(Pointer)));
         if (b) {
             Flags[0] = true;
         }
@@ -692,8 +690,8 @@ public class VirtualMachine implements VMInterface {
 
         XOffset = Math.max(0, XOffset);
         YOffset = Math.max(0, YOffset);
-        XOffset = (XOffset % (int)(image.getWidth()-256));
-        YOffset = (XOffset % (int)(image.getHeight()-256));
+        XOffset = Math.min((int)(image.getWidth() - 255), XOffset);
+        YOffset = Math.min((int)(image.getHeight() - 255), YOffset);
     }
     private void C_rotateFlags(double arg1, double arg2) {
         boolean[] t = new boolean[256];
@@ -754,8 +752,8 @@ public class VirtualMachine implements VMInterface {
 
         XOffset = Math.max(0, XOffset);
         YOffset = Math.max(0, YOffset);
-        XOffset = (XOffset % (int)(image.getWidth()-256));
-        YOffset = (XOffset % (int)(image.getHeight()-256));
+        XOffset = Math.min((int)(image.getWidth() - 255), XOffset);
+        YOffset = Math.min((int)(image.getHeight() - 255), YOffset);
     }
     private void C_sum(double arg1, double arg2) {
         Color c1 = getColor(arg1, arg2);
@@ -793,7 +791,7 @@ public class VirtualMachine implements VMInterface {
         arg1 = arg1;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
-                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255))%256), ((int)((getColor(i, j).getGreen()*255) + arg1)%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
+                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255))%256), ((int)((getColor(i, j).getGreen()*255) + arg1)%256), ((int)((getColor(i, j).getBlue()*255))%256) );
                 setColor(i, j, c);
             }
         }
@@ -802,7 +800,7 @@ public class VirtualMachine implements VMInterface {
         arg1 = arg1;
         for (int i = 0; i < 256; i++) {
             for (int j = 0; j < 256; j++) {
-                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255) + arg1)%256), ((int)((getColor(i, j).getGreen()*255))%256), ((int)((getColor(i, j).getBlue()*255) + arg1)%256) );
+                Color c = Color.rgb( ((int)((getColor(i, j).getRed()*255) + arg1)%256), ((int)((getColor(i, j).getGreen()*255))%256), ((int)((getColor(i, j).getBlue()*255))%256) );
                 setColor(i, j, c);
             }
         }

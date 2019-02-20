@@ -1,4 +1,4 @@
-package sample;
+package zGarbage.sample;
 
 public class Controller {
 }

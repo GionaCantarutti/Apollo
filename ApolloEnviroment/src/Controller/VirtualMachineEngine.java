@@ -1,6 +1,6 @@
 package Controller;
 
-import Virtual_Machine.VMInterface;
+import Virtual_Machine.ApolloVirtualMachine;
 
 public class VirtualMachineEngine implements VirtualMachineThread, Runnable{
 
@@ -12,7 +12,7 @@ public class VirtualMachineEngine implements VirtualMachineThread, Runnable{
 
     boolean toTerminate;
 
-    VMInterface virtualMachine;
+    ApolloVirtualMachine virtualMachine;
 
     Controller controller;
 

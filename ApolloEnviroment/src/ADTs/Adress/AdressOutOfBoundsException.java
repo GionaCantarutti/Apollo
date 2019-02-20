@@ -1,4 +1,4 @@
-package ADTs;
+package ADTs.Adress;
 
 public class AdressOutOfBoundsException extends Exception{
 

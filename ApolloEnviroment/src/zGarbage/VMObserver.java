@@ -1,6 +1,7 @@
-package Observer;
+package zGarbage;
 
-import ADTs.Adress;
+import ADTs.Adress.Adress;
+import Observer.Observer;
 import javafx.scene.image.Image;
 
 public class VMObserver implements Observer {

@@ -1,4 +1,4 @@
-package main;
+package zGarbage.main;
 
 import javafx.application.Application;
 import javafx.scene.control.Button;

@@ -1,10 +1,10 @@
 package Virtual_Machine;
 
-import ADTs.Adress;
+import ADTs.Adress.Adress;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public interface VMInterface {
+public interface ApolloVirtualMachine {
 
     /**
      * Steps the execution of the virtual machines.

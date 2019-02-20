@@ -1,4 +1,4 @@
-package main;
+package zGarbage.main;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -1,4 +1,4 @@
-package GUIs;
+package zGarbage;
 
 import Controller.Controller;
 import Controller.ControllerInterface;
@@ -116,7 +116,7 @@ public class TestingGUI extends Application implements EventHandler<ActionEvent>
 
         primaryStage.show();
 
-        //After closing the main window
+        //After closing the zGarbage.main window
 
     }
 

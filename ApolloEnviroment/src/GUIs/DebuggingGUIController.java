@@ -1,6 +1,6 @@
 package GUIs;
 
-import ADTs.Adress;
+import ADTs.Adress.Adress;
 import Controller.Controller;
 import Observer.Observer;
 import javafx.embed.swing.SwingFXUtils;

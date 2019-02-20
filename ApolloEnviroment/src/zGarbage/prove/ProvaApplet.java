@@ -1,4 +1,4 @@
-package prove;
+package zGarbage.prove;
 
 import java.applet.Applet;
 import java.awt.*;

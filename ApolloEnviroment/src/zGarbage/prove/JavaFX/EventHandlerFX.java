@@ -1,4 +1,4 @@
-package prove.JavaFX;
+package zGarbage.prove.JavaFX;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

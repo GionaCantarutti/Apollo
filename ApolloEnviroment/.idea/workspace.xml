@@ -58,46 +58,46 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Controller.java">
+        <entry file="file://$PROJECT_DIR$/src/ImageGenerator/ImageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="272">
+              <caret line="16" column="45" lean-forward="true" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
               <folding>
-                <element signature="method#runColor#0;class#Controller#0" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/ControllerInterface.java">
+        <entry file="file://$PROJECT_DIR$/src/ImageGenerator/ImageGeneratorFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <folding>
+                <element signature="e#173#174#0" expanded="true" />
+                <element signature="e#209#210#0" expanded="true" />
+                <element signature="e#290#291#0" expanded="true" />
+                <element signature="e#338#339#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIs/DebuggingGUI.java">
+        <entry file="file://$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/ApolloProgramDescriptor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+            <state relative-caret-position="170">
+              <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIs/DebuggingGUIController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9384">
-              <caret line="614" selection-start-line="614" selection-end-line="614" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ADTs/Adress.java">
+        <entry file="file://$PROJECT_DIR$/src/ADTs/Adress/Adress.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -105,39 +105,80 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/APDInts.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#183#184#0" expanded="true" />
+                <element signature="e#210#211#0" expanded="true" />
+                <element signature="e#262#263#0" expanded="true" />
+                <element signature="e#289#290#0" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
+                <element signature="e#376#377#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/VirtualMachine.java">
+        <entry file="file://$PROJECT_DIR$/src/ADTs/Channel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="85">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIs/fxml/DbuggingView.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/ADTs/Adress/AdressOutOfBoundsException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/VMInterface.java">
+        <entry file="file://$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/APDIterator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="136">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding>
+                <element signature="e#145#146#0" expanded="true" />
+                <element signature="e#173#174#0" expanded="true" />
+                <element signature="e#215#216#0" expanded="true" />
+                <element signature="e#242#243#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIs/TestingGUI.java">
+        <entry file="file://$PROJECT_DIR$/src/ImageGenerator/StringToImageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2329">
-              <caret line="154" selection-start-line="154" selection-end-line="154" />
+            <state>
+              <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#474#475#0" expanded="true" />
+                <element signature="e#501#502#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ImageGenerator/InvalidFileFormatException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
+              <folding>
+                <element signature="e#124#125#0" expanded="true" />
+                <element signature="e#148#149#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,6 +189,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -183,6 +226,22 @@
         <option value="$PROJECT_DIR$/src/GUIs/DebuggingGUI.java" />
         <option value="$PROJECT_DIR$/src/GUIs/DebuggingGUIController.java" />
         <option value="$PROJECT_DIR$/src/Virtual_Machine/VirtualMachine.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/InvalidFileExtensionException.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/InvalidFileFormatException.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/RawImageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/ImageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/Garbage/VMObserver.java" />
+        <option value="$PROJECT_DIR$/src/Garbage/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/zGarbage/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/StringToImageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/ImageGeneratorFactory.java" />
+        <option value="$PROJECT_DIR$/src/Compiler/FileToImageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/ImageGenerator/FileToImageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/ADTs/APDIterator.java" />
+        <option value="$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor.java" />
+        <option value="$PROJECT_DIR$/src/ADTs/APDInts.java" />
+        <option value="$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/ApolloProgramDescriptor.java" />
+        <option value="$PROJECT_DIR$/src/ADTs/Channel.java" />
       </list>
     </option>
   </component>
@@ -194,8 +253,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-93" />
-    <option name="y" value="-22" />
+    <option name="x" value="-71" />
+    <option name="y" value="38" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -208,8 +267,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -232,31 +289,14 @@
               <item name="ApolloEnviroment" type="b2602c69:ProjectViewProjectNode" />
               <item name="ApolloEnviroment" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ApolloEnviroment" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ApolloEnviroment" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUIs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ApolloEnviroment" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ApolloEnviroment" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUIs" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ApolloEnviroment" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ApolloEnviroment" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Virtual_Machine" type="462c0819:PsiDirectoryNode" />
+              <item name="ImageGenerator" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,7 +308,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550159195226" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550688776105" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
@@ -295,7 +335,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DebuggingGUI">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -320,7 +360,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="GUIs.*" />
+          <option name="PATTERN" value="zGarbage.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -329,17 +369,31 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
+      <option name="MAIN_CLASS_NAME" value="zGarbage.sample.Main" />
       <module name="ApolloEnviroment" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="zGarbage.sample.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="zGarbage.main.Main" />
+      <module name="ApolloEnviroment" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="zGarbage.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -380,11 +434,13 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DebuggingGUI" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.DebuggingGUI" />
+      <item itemvalue="Application.Main (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.DebuggingGUI" />
       </list>
     </recent_temporary>
@@ -408,8 +464,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2238806" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.2260128" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -454,15 +511,15 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/sample/sample.fxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
@@ -472,7 +529,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -485,21 +542,11 @@
     <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/InvalidImageException.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/prove/JavaFX/EventHandlerFX.java">
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/prove/JavaFX/EventHandlerFX.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/prove/ProvaApplet.java">
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/prove/ProvaApplet.java">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/ButtonHandler.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ADTs/AdressOutOfBoundsException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIs/DebuggingView.fxml" />
     <entry file="file://$PROJECT_DIR$/src/Controller/VirtualMachineEngine.java">
@@ -547,39 +594,202 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ADTs/Adress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIs/fxml/DbuggingView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1207">
           <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/VMInterface.java">
+    <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/ApolloVirtualMachine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIs/TestingGUI.java">
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/VMObserver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2329">
-          <caret line="154" selection-start-line="154" selection-end-line="154" />
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/VirtualMachine.java">
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/main/ButtonHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Observer/Observer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Observer/Observable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Virtual_Machine/BasicApolloVirtualMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7344">
+          <caret line="23" column="16" lean-forward="true" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageGenerator/InvalidFileExtensionException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="e#364#365#0" expanded="true" />
+            <element signature="e#456#457#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageGenerator/FileToImageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#RawImageGenerator#0;class#RawImageGenerator#0" />
+            <element signature="method#RawImageGenerator#1;class#RawImageGenerator#0" />
+            <element signature="method#setImageSize#0;class#RawImageGenerator#0" />
+            <element signature="method#generateImage#0;class#FileToImageGenerator#0" />
+            <element signature="e#1788#1818#1" />
+            <element signature="e#2183#2184#0" expanded="true" />
+            <element signature="e#2436#2437#0" expanded="true" />
+            <element signature="method#minimumRequiredHeight#0;class#RawImageGenerator#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageGenerator/ImageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="45" lean-forward="true" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/zGarbage/TestingGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageGenerator/InvalidFileFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="53" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="53" />
+          <folding>
+            <element signature="e#124#125#0" expanded="true" />
+            <element signature="e#148#149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageGenerator/StringToImageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" lean-forward="true" selection-start-column="23" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#501#502#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ImageGenerator/ImageGeneratorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#173#174#0" expanded="true" />
+            <element signature="e#209#210#0" expanded="true" />
+            <element signature="e#290#291#0" expanded="true" />
+            <element signature="e#338#339#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/APDInts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#183#184#0" expanded="true" />
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#289#290#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/APDIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="e#145#146#0" expanded="true" />
+            <element signature="e#173#174#0" expanded="true" />
+            <element signature="e#215#216#0" expanded="true" />
+            <element signature="e#242#243#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ADTs/Adress/AdressOutOfBoundsException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ADTs/Adress/Adress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ADTs/ApolloProgramDescriptor/ApolloProgramDescriptor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="15" column="16" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ADTs/Channel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>

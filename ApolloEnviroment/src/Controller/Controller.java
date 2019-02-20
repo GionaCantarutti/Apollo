@@ -1,12 +1,12 @@
 package Controller;
 
-import ADTs.Adress;
+import ADTs.Adress.Adress;
 import Observer.Observable;
 import Observer.Observer;
 import Virtual_Machine.InvalidImageException;
 import Virtual_Machine.MachineStoppedException;
-import Virtual_Machine.VMInterface;
-import Virtual_Machine.VirtualMachine;
+import Virtual_Machine.ApolloVirtualMachine;
+import Virtual_Machine.BasicApolloVirtualMachine;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Controller implements ControllerInterface, Observable {
 
-    VMInterface virtualMachine;
+    ApolloVirtualMachine virtualMachine;
     Image sourceImage;
     VirtualMachineThread VMT;
 
@@ -25,7 +25,7 @@ public class Controller implements ControllerInterface, Observable {
 
     public Controller() {
         sourceImage = new WritableImage(256, 256);
-        virtualMachine = new VirtualMachine(sourceImage);
+        virtualMachine = new BasicApolloVirtualMachine(sourceImage);
         VMT = new VirtualMachineEngine(this);
 
         //Thread VMthread = new Thread((Runnable)VMT);

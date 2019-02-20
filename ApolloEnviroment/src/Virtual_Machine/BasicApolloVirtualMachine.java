@@ -1,13 +1,13 @@
 package Virtual_Machine;
 
-import ADTs.Adress;
+import ADTs.Adress.Adress;
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 
-public class VirtualMachine implements VMInterface {
+public class BasicApolloVirtualMachine implements ApolloVirtualMachine {
 
     final int   NUMBER_OF_COMMANDS = 51;
     final String VERSION = "1.5b";
@@ -29,14 +29,14 @@ public class VirtualMachine implements VMInterface {
 
 
     //region Constructors and initialization functions
-    public VirtualMachine() {
+    public BasicApolloVirtualMachine() {
 
         image = null;
         initializeInstance();
 
     }
 
-    public VirtualMachine(Image image) {
+    public BasicApolloVirtualMachine(Image image) {
 
         this.image = image;
         initializeInstance();

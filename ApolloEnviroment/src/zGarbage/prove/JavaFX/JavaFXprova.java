@@ -1,4 +1,4 @@
-package prove.JavaFX;
+package zGarbage.prove.JavaFX;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

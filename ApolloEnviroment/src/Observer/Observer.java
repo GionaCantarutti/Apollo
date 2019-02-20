@@ -1,6 +1,6 @@
 package Observer;
 
-import ADTs.Adress;
+import ADTs.Adress.Adress;
 import javafx.scene.image.Image;
 
 public interface Observer {

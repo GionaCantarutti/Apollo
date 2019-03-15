@@ -19,4 +19,22 @@ public interface ApolloProgramDescriptor {
 
     int getValue(Channel ch, int line);
 
+    void setLine(Color c, int line);
+
+    void setLine(String color, int line);
+
+    void setValue(int value, Channel ch, int line);
+
+
+
+    void writeColor(Color c);
+
+    void writeColor(String s);
+
+    void writeColor(int r, int g, int b);
+
+    void movePointer(int line);
+
+    void skipLines(int lines);
+
 }

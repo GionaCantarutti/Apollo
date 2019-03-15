@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import Util.Parser;
+
 public class FileToImageGenerator implements ImageGenerator {
 
     File source;
@@ -76,7 +78,7 @@ public class FileToImageGenerator implements ImageGenerator {
                     if (line == null) {
                         writer.setColor(i, j, background);
                     } else {
-                        writer.setColor(i, j, parseColor(line));
+                        writer.setColor(i, j, Parser.parseColor(line));
                     }
                 }
             }
@@ -89,16 +91,6 @@ public class FileToImageGenerator implements ImageGenerator {
     @Override
     public Image getOutput() {
         return output;
-    }
-
-    /**
-     * ToDo
-     * parses the text to extrat a color from it in the format "red,green,blue" with red, green and blue bound [0,255]
-     * @param text
-     * @return
-     */
-    private Color parseColor(String text) {
-        return null;
     }
 
     /**
